@@ -1,6 +1,8 @@
 # SNAKES GAME
-# Use ARROW KEYS to play, SPACE BAR for pausing/resuming and Esc Key for exiting
-# Code courtesy of Sanchit Gangwar: https://gist.github.com/sanchitgangwar/2158089
+# Use ARROW KEYS to play, SPACE BAR for pausing/resuming
+#  and Esc Key for exiting.
+# Code courtesy of Sanchit Gangwar:
+#  https://gist.github.com/sanchitgangwar/2158089
 
 import curses
 from curses import KEY_RIGHT, KEY_LEFT, KEY_UP, KEY_DOWN
@@ -27,7 +29,8 @@ food = [10, 20]
 # Prints the food
 win.addch(food[0], food[1], '*')
 
-while key != 27:                                                   # While Esc key is not pressed
+# While Esc key is not pressed
+while key != 27:
     win.border(0)
     # Printing 'Score' and
     win.addstr(0, 2, 'Score : ' + str(score) + ' ')
@@ -50,10 +53,12 @@ while key != 27:                                                   # While Esc k
         key = prevKey
         continue
 
-    if key not in [KEY_LEFT, KEY_RIGHT, KEY_UP, KEY_DOWN, 27]:     # If an invalid key is pressed
+    # If an invalid key is pressed
+    if key not in [KEY_LEFT, KEY_RIGHT, KEY_UP, KEY_DOWN, 27]:
         key = prevKey
 
-    # Calculates the new coordinates of the head of the snake. NOTE: len(snake) increases.
+    # Calculates the new coordinates of the head of the snake.
+    # NOTE: len(snake) increases.
     # This is taken care of later at [1].
     snake.insert(0, [snake[0][0] + (key == KEY_DOWN and 1) + (key == KEY_UP and -1),
                      snake[0][1] + (key == KEY_LEFT and -1) + (key == KEY_RIGHT and 1)])
@@ -69,13 +74,18 @@ while key != 27:                                                   # While Esc k
         snake[0][1] = 1
 
     # Exit if snake crosses the boundaries (Uncomment to enable)
-    # if snake[0][0] == 0 or snake[0][0] == 19 or snake[0][1] == 0 or snake[0][1] == 59: break
+    # if snake[0][0] == 0
+    # or snake[0][0] == 19
+    # or snake[0][1] == 0
+    # or snake[0][1] == 59:
+    #   break
 
     # If snake runs over itself
     if snake[0] in snake[1:]:
         break
 
-    if snake[0] == food:                                            # When snake eats the food
+    # When snake eats the food
+    if snake[0] == food:
         food = []
         score += 1
         while food == []:
